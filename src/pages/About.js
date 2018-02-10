@@ -3,7 +3,7 @@ import { Box, H2, Text, A } from 'styled-system-html';
 import SiteFooter from '../components/SiteFooter'
 
 
-class GettingStarted extends Component {
+class About extends Component {
 	constructor() {
 		super();
 	}
@@ -12,7 +12,7 @@ class GettingStarted extends Component {
 		return (
 			<Box>
 				<Box p={6} mw="1200px" mx="auto" align="center">
-					<H2 pt={5} pb={4}>Getting Started Page</H2>
+					<H2 pt={5} pb={4}>About Page</H2>
 					<Text pb={5}>For more info, go to the <A href="https://johnpolacek.github.io/styled-starter/">Styled Starter Project</A></Text>
 				</Box>
 				<SiteFooter />
@@ -21,4 +21,4 @@ class GettingStarted extends Component {
 	}
 }
 
-export default GettingStarted;
+export default About;
