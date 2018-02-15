@@ -19,7 +19,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-modal": "^3.1.12",
+    "react-live": "^1.9.2",
     "styled-components": "^3.1.6",
     "styled-system-html": "^0.1.9"
   },
