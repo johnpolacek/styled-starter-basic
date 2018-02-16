@@ -1,87 +1,61 @@
-var webdriver = require('selenium-webdriver'),
-    By = webdriver.By,
-    until = webdriver.until;
-
-var chromeCapabilities = webdriver.Capabilities.chrome();
-//setting chrome options to start the browser fully maximized
-var chromeOptions = {
-    'args': ['--headless', '--disable-gpu']
-};
-chromeCapabilities.set('chromeOptions', chromeOptions);
+var assert = require("assert"),
+    webdriver = require("selenium-webdriver"),
+    utils = require('./utils'),
+    shouldNotFindXpath = utils.shouldNotFindXpath,
+    verifyXpath = utils.verifyXpath,
+    clickXpath = utils.clickXpath,
+    waitForPageLoad = utils.waitForPageLoad;
 
 
+describe("testing styled starter project", function() {
+    this.timeout(20000);
 
-var test = require('selenium-webdriver/testing');
-var assert = require('assert');
-
-var driver;
-
-test.describe( 'SiteNav' , function() {
-
-    // longer timeout for selenium tests
-    this.timeout(10000);
-  
-    test.beforeEach(function(){
-        driver = new webdriver.Builder().withCapabilities(chromeCapabilities).build();
-        driver.get('http://localhost:3000/');
+    beforeEach(function() {
+        if (process.env.SAUCE_USERNAME != undefined) {
+            this.driver = new webdriver.Builder()
+                .usingServer('http://'+ process.env.SAUCE_USERNAME+':'+process.env.SAUCE_ACCESS_KEY+'@ondemand.saucelabs.com:80/wd/hub')
+                .withCapabilities({
+                    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+                    build: process.env.TRAVIS_BUILD_NUMBER,
+                    username: process.env.SAUCE_USERNAME,
+                    accessKey: process.env.SAUCE_ACCESS_KEY,
+                    browserName: "chrome"
+                }).build();
+        } else {
+            this.driver = new webdriver.Builder()
+                .withCapabilities({
+                browserName: "chrome"
+            }).build();
+        }
+        this.driver.get("http://localhost:3000");
+        return waitForPageLoad(this.driver);
     });
- 
-    test.afterEach(function(){
-        driver.quit();
-    });
- 
-    test.it('can navigate', function() {
-        console.log('\n      - active nav is home');
-        shouldNotFindXpath("//nav//p[text()='About']");
-        verifyXpath("//nav//p[text()='Styled Starter']");
-        
-        console.log('      - click About link\n')
-        clickXpath("//nav//a[@href='/about' and text()='About']");
-        waitForPageLoad();
-        
-        console.log('      - active nav is About\n')
-        verifyXpath("//nav//p[text()='About']");
 
-        console.log('      - click home link\n')
-        clickXpath("//nav//a[@href='/' and text()='Styled Starter']");
-
-        console.log('      - active nav is home');
-        shouldNotFindXpath("//nav//p[text()='About']");
-        verifyXpath("//nav//p[text()='Styled Starter']");
+    afterEach(function() {
+        return this.driver.quit();
     });
- 
+
+    it('can navigate - About Page', function() {
+        return verifyTopLevelNav(this.driver, 'About');
+    });
 });
 
-function shouldNotFindXpath(xpath) {
-    driver.findElements(By.xpath(xpath)).then(function(elements) {
-        assert.equal(0,elements.length);
-    });
-}
+function verifyTopLevelNav(driver, section) {
+    console.log('      - active nav is home');
+    shouldNotFindXpath(driver, "//nav//p[text()='"+section+"']");
+    verifyXpath(driver, "//nav//p[text()='Styled Starter']");
+    
+    console.log('      - click '+section+' link');
+    clickXpath(driver, "//nav//a[@href='/"+section.toLowerCase()+"' and text()='"+section+"']");
+    waitForPageLoad(driver);
+    
+    console.log('      - active nav is '+section+'')
+    verifyXpath(driver, "//nav//p[text()='"+section+"']");
 
-function verifyXpath(xpath) {
-    driver.wait(function() {
-        return driver.findElements(webdriver.By.xpath(xpath)).then(function(elements) {
-            return elements[0];
-        });
-    }, 2000, 'Failed to find '+xpath+' after 2 seconds');
-}
+    console.log('      - click home link');
+    clickXpath(driver, "//nav//a[@href='/' and text()='Styled Starter']");
 
-function clickXpath(xpath) {
-    driver.wait(function() {
-        return driver.findElement(webdriver.By.xpath(xpath)).then(function(element) {
-            driver.findElement(By.xpath(xpath)).click();
-            return element;
-        });
-    }, 2000, 'Failed to find '+xpath+' after 2 seconds');
-}
-
-function waitForPageLoad() {
-    driver.sleep(400); // Make sure new page init has started...
-    driver.executeScript('return document.readyState').then(function(readyState) {
-        if (readyState != 'complete') {
-            driver.executeScript('window.stop();');
-            driver.sleep(400);
-            waitForPageLoad();
-        } 
-    });
+    console.log('      - active nav is home');
+    shouldNotFindXpath(driver, "//nav//p[text()='"+section+"']");
+    return verifyXpath(driver, "//nav//p[text()='Styled Starter']");
 }
