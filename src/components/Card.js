@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import { Flex, Box, H1, H2, H3, H4, H5, H6, Text, UL, LI, Image } from 'styled-system-html';
 
 export default (props) => (

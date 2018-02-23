@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Flex, Box, H1, H2, H3, H4, H5, H6, Text, Code, Em, Strong, Small, U, Del } from 'styled-system-html';
 import Section from '../../components/Section'
 import Heading from '../../components/Heading'
 import Link from '../../components/Link'
-import CodeSpecimen from '../../components/CodeSpecimen'
 
 const scope = { Flex, Box, H1, H2, H3, H4, H5, H6, Text, Code, Em, Strong, Small, U, Del, Link };
 

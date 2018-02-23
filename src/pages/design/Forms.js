@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Flex, Box, Form, Label, Input, TextArea, Select, Legend, InputSubmit } from 'styled-system-html';
 import Section from '../../components/Section'

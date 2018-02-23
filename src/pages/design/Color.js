@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import theme from '../../_Theme';
 import { Flex, Box, H3, Text } from 'styled-system-html';
 
