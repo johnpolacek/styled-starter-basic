@@ -46,7 +46,7 @@ function verifyTopLevelNav(driver, section) {
     verifyXpath(driver, "//nav//p[text()='Styled Starter']");
     
     console.log('      - click '+section+' link');
-    clickXpath(driver, "//nav//a[@href='/"+section.toLowerCase()+"' and text()='"+section+"']");
+    clickXpath(driver, "//nav//a[text()='"+section+"']");
     waitForPageLoad(driver);
     
     console.log('      - active nav is '+section+'')

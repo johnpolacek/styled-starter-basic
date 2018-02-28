@@ -7,7 +7,7 @@ export default (props) => (
 	    	props.isCurrent ? (
 	    		<Text color="white">{props.children}</Text>
 	    	) : (
-		    	<Link href={props.url} as={process.env.BACKEND_URL + props.url}>
+		    	<Link href={props.url}>
 		    		<A color="white" style={{textDecoration:'none',opacity:.5}} href={props.url}>{props.children}</A>
 		    	</Link>	    	
 	    	)

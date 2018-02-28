@@ -3,7 +3,7 @@ import Page			from '../src/containers/Page'
 
 
 export default () => (
-	<Page name="Design" prefix="..">
+	<Page name="Design">
     	<Design />
     </Page>
 )

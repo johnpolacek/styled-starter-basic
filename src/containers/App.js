@@ -8,7 +8,7 @@ import SiteNav from '../components/SiteNav'
 
 export default (props) => (
 	<Box>
-	    <Head prefix={props.prefix} />
+	    <Head />
 	    <ThemeProvider theme={theme}>
 	    	<Box>
 	    		<SiteNav current={props.name} />
