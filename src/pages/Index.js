@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { Box, H2, Text, A } from 'styled-system-html'
 import SiteFooter from '../components/SiteFooter'
 
