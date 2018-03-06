@@ -33,7 +33,7 @@ injectGlobal`
   p{line-height:1.5;}
   select{padding:8px;}
   h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{text-rendering:optimizelegibility;margin:0;}
-  input,select,textarea{padding:4px;border-radius:4px;border:solid 1px #ccc;font-size:16px;font-family:system-ui,sans-serif;}
+  input,select,textarea{padding:4px;border-radius:4px;border:solid 1px #ccc;font-size:16px;font-family:inherit;}
   select{-webkit-appearance:menulist;height:32px;}
   table{border-collapse:collapse;}
   .ReactModalPortal > div {opacity:0;}
