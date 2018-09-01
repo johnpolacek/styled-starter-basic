@@ -1,5 +1,5 @@
-import Design 	from '../src/pages/Design'
-import Page			from '../src/containers/Page'
+import Design from '../src/pages/Design'
+import Page	from '../src/containers/Page'
 
 
 export default () => (

@@ -1,21 +1,19 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { ThemeProvider } from 'styled-components'
-import { Box, Text, H3 } from 'styled-system-html'
-import theme 	from '../_Theme'
+import React, { Component } from 'react';
+import { ThemeProvider } from 'styled-components';
 import Head		from './Head'
 import SiteNav from '../components/SiteNav'
+import { Div, Text, H3 } from 'styled-system-html';
+import theme from '../_Theme'
+import Page from './Page'
 
-export default (props) => (
-	<Box>
-	    <Head />
-	    <ThemeProvider theme={theme}>
-	    	<Box>
-	    		<SiteNav current={props.name} />
-				<Box>
-					{props.children}
-				</Box>
-			</Box>
-    	</ThemeProvider>
-  	</Box>
-)
+class App extends Component {
+
+	render() {
+		return (
+			<Page theme={theme} />
+		)
+	}
+}
+
+export default App
+
